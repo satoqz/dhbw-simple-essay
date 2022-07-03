@@ -1,0 +1,123 @@
+\documentclass[%
+  oneside,
+  parskip=half,
+  listof=totoc,
+  toc=bibliography,
+  headinclude=false,
+  footinclude=false,
+  footheight=16pt,
+  DIV=calc,
+  BCOR=8mm,
+  abstract=true,
+  12pt
+]{scrreprt}
+
+\usepackage[margin=2.5cm,foot=1cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[activate]{microtype}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage[right]{eurosym}
+\usepackage[perpage,hang,multiple,stable]{footmisc}
+\usepackage[printonlyused]{acronym}
+\usepackage{xstring}
+\usepackage{xcolor}
+\usepackage{makeidx}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{wrapfig}
+\usepackage{pgffor}
+\usepackage{listings}
+\usepackage{tabu}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{scrhack}
+\usepackage{colortbl}
+
+\definecolor{lightgray}{gray}{0.6}
+\definecolor{red}{HTML}{FD2C2C}
+\definecolor{yellow}{HTML}{F0F01B}
+\definecolor{green}{HTML}{1BF04D}
+\definecolor{LinkColor}{HTML}{00007A}
+\definecolor{ListingBackground}{HTML}{FCF7DE}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\usepackage[scaled=.95]{helvet}
+\renewcommand\familydefault{\sfdefault}
+
+\newcommand{\setting}[1]{%
+  \expandafter\newcommand\csname #1\endcsname{}
+  \expandafter\newcommand\csname set#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
+}
+\newcommand{\langstr}[1]{\setting{lang#1}}
+
+\input{lib/options}
+\input{settings}
+
+\input{lib/lang/strings}
+\input{lib/lang/\lang}
+
+\iflang{de}{\usepackage[english, ngerman]{babel}}
+\iflang{en}{\usepackage[ngerman, american]{babel}}
+
+\usepackage[%
+  colorlinks=true,
+  linkcolor=LinkColor,
+  citecolor=LinkColor,
+  filecolor=LinkColor,
+  menucolor=LinkColor,
+  urlcolor=LinkColor,
+  linktocpage=true,
+  bookmarksnumbered=true
+]{hyperref}
+
+\usepackage{bookmark}
+
+\addtokomafont{caption}{\small}
+
+\iflang{de}{%
+  \usepackage[
+    backend=biber,
+    bibwarn=true,
+    bibencoding=utf8,
+    sortlocale=de_DE,
+    style=numeric-comp
+  ]{biblatex}
+}
+
+\iflang{en}{%
+  \usepackage[
+    backend=biber,
+    bibwarn=true,
+    bibencoding=utf8,
+    sortlocale=en_US,
+    style=numeric-comp
+  ]{biblatex}
+
+  \addto\extrasamerican{%
+    \renewcommand{\chapterautorefname}{Chapter}%
+  }
+}
+
+\addbibresource{bibliography.bib}
+
+\graphicspath{{img/}}
+
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{7000}
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty=10000
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\usepackage{subcaption}
+\usepackage{cleveref}

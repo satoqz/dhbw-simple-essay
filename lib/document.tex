@@ -1,0 +1,42 @@
+\input{lib/header}
+
+\begin{document}
+
+\makeatletter
+\begin{spacing}{1}
+  \input{lib/titlepage}
+\end{spacing}
+\newpage
+
+\pagenumbering{Roman}
+
+\newpage
+
+\pagestyle{plain}
+
+\RedeclareSectionCommand[beforeskip=20pt]{section}
+
+\begin{spacing}{1.1}
+  \begingroup
+  \renewcommand*{\chapterpagestyle}{empty}
+  \pagestyle{empty}
+  \setcounter{tocdepth}{2}
+  \tableofcontents
+  \clearpage
+  \endgroup
+\end{spacing}
+\newpage
+
+\newpage
+\cleardoublepage
+
+\pagestyle{headings}
+\pagenumbering{arabic}
+
+\input{essay}
+
+\cleardoublepage
+\printbibliography[heading=bibintoc]
+
+\end{document}
+
